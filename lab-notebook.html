@@ -108,7 +108,7 @@
     <h4>  <a property="account" href="https://github.com/cboettig" onclick="recordOutboundLink(this, 'Outbound Links', 'Github'); return false;"><i class="icon-github" alt="github"></i> Coding </a></h4> 
     <div class="excerpt">
       <div class="scroll">
-        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>rrhack post</em> <a href="https://github.com/cboettig/labnotebook/compare/d1e0a59959...9f13ea973f">11:40 2014/12/16</a></li><li>cboettig commented on issue ropensci/chromer#16: <em>tl;dr I think you want mutate_ not mutate Yeah, many functions Hadley writes use non-standard evaluation as a way of giving the user a slightly mor…</em> <a href="https://github.com/ropensci/chromer/issues/16#issuecomment-67230863">08:59 2014/12/16</a></li><li>cboettig pushed to master at cboettig/dockerfiles: <em>Merge branch 'master' of github.com:cboettig/dockerfiles tweak config</em> <a href="https://github.com/cboettig/dockerfiles/compare/7815cfa115...753c623da3">12:35 2014/12/16</a></li><li>cboettig closed issue cboettig/knitcitations#28: <em>Support/awareness of Sweave/LaTeX output</em> <a href="https://github.com/cboettig/knitcitations/issues/28">08:02 2014/12/15</a></li><li>cboettig closed issue cboettig/knitcitations#43: <em>Tooltip does not need javascript</em> <a href="https://github.com/cboettig/knitcitations/issues/43">08:01 2014/12/15</a></li></ul>
+        <ul><li>cboettig pushed to master at cboettig/labnotebook: <em>add rrhack post</em> <a href="https://github.com/cboettig/labnotebook/compare/9f13ea973f...5eea6d71ae">04:23 2014/12/17</a></li><li>cboettig commented on issue ropensci/roweb#106: <em>Hey Scott, Very cool. Perhaps you want to flush out a few of the examples with a bit more text explaining what they do / why that's useful? I suspe…</em> <a href="https://github.com/ropensci/roweb/issues/106#issuecomment-67263873">01:26 2014/12/17</a></li><li>cboettig pushed to gh-pages at cboettig/labnotebook: <em>Updating to cboettig/labnotebook@9f13ea9.</em> <a href="https://github.com/cboettig/labnotebook/compare/2383aef371...c4d957d28a">11:48 2014/12/16</a></li><li>cboettig pushed to master at cboettig/labnotebook: <em>rrhack post</em> <a href="https://github.com/cboettig/labnotebook/compare/d1e0a59959...9f13ea973f">11:40 2014/12/16</a></li><li>cboettig commented on issue ropensci/chromer#16: <em>tl;dr I think you want mutate_ not mutate Yeah, many functions Hadley writes use non-standard evaluation as a way of giving the user a slightly mor…</em> <a href="https://github.com/ropensci/chromer/issues/16#issuecomment-67230863">08:59 2014/12/16</a></li></ul>
       </div>
     </div>
   </div>
@@ -146,6 +146,115 @@
               ><i class="icon-rss" ></i> Entries</a></h4>
       
         <div class="col-md-3">
+          <header><h4><a href="/2014/12/11/rrhack-notes.html">Rrhack Notes</a></h4></header>
+<p><span></span></p>
+<p style="font-style:italic"> 11 Dec 2014</p>
+
+<article>
+<div class="excerpt">
+<p>Misc notes from #rrhack. Much more detail under our <a href="https://github.com/Reproducible-Science-Curriculum">Github organization</a>, including the issues tracker &amp; wiki for the meeting and the start of the repositories for the various teaching modules.</p>
+<p>Also see rrhack slack forum and twitter hashtag.</p>
+<h2 id="key-questions">Key questions</h2>
+<ul>
+<li><p>Audience and motivation. Reproducibility isn’t a goal, it’s a means to an ends. Accelerating science is the goal. Motivation should be to accelerate &amp; scale your own science.</p></li>
+<li><p>Reproducible by whom? Starting point: expert in domain, expert in language can reproduce without the need to rediscover / recreate? Better: agonstic to language?</p></li>
+<li><p>Complexity. How frequently does routine, non-computational research involve writing over 1000 lines of code? Can 1000 lines of code be managed successfully without a software development approach?</p></li>
+<li><p>knitr &amp; scaling issues</p></li>
+<li><p>The download file problem.</p></li>
+</ul>
+<h2 id="mine-on-using-docker">Mine on using Docker</h2>
+<ul>
+<li>Docker installed on cluster</li>
+<li>Students use RStudio export function to download &amp; submit (into a standard course management platform). import data via direct calls from R (e.g. <code>download.file()</code>)</li>
+</ul>
+<h2 id="jenny-bryan-on-on-using-github-to-teach">Jenny Bryan on on using Github to teach</h2>
+<ul>
+<li>Free organization account (gold) with 50 private repos</li>
+<li>Prof / TA team has write access</li>
+<li>Each student needs to be their own team with write access to own repo</li>
+<li>Student team has read access to everything, so they can see each-others work</li>
+</ul>
+<p>Homework submission: open an issue in their repo, tag the owners group, include the hash.</p>
+<p>Need programmatic control of Github to set this up.<br /> Need alterego to test that this works</p>
+<p>Users avoid command line for most work to start, just using Github interface and RStudio interface.</p>
+<p>Not happy with Windows version of Github’s git client (hard to connect to RStudio). Not a problem with the mac.</p>
+<h2 id="dockerized-rstudio-as-pointy-clicky-application">Dockerized RStudio as pointy-clicky application?</h2>
+<p>From Jenny: Desktop launch for docker. from Dan: rewrap boot2docker to launch RStudio (hadleyverse) with a click. (installs virtualbox,docker, &amp; boot2docker first if necessary. 129 MB. Not self contained though?).</p>
+<h2 id="new-tricks">New tricks</h2>
+<p>Working with multiple branches with different content (e.g. gh-pages): Add a <code>web/</code> subdirectory to repo and .gitignore, check out the gh-pages branch there. Add indicator of branch to user’s prompt.</p>
+<p>Using the wiki pages: see [richfitz/ghwiki]. Rather than publish <code>.Rmd</code> files</p>
+<p>Organization: just stick with package compendium format?</p>
+ 
+<!-- not that raw_content depends on custom generator, 
+     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
+</article> 
+<p> <a href="/2014/12/11/rrhack-notes.html"> <em>Read more</em></a> </p>
+<br />
+<br />
+
+
+        </div>
+      
+        <div class="col-md-3">
+          <header><h4><a href="/2014/12/07/self-destroy-droplet-on-completion.html">Self Destroy Droplet On Completion</a></h4></header>
+<p><span></span></p>
+<p style="font-style:italic"> 07 Dec 2014</p>
+
+<article>
+<div class="excerpt">
+<p>Scott’s analogsea package provides a great way to script commands for cloud instances on the digitalocean platform. for instance, we can use analogsea to automatically start an instance of the desired size, submit a computationally intensive task, and then terminate the instance when the task completes successfully. This last step is particularly convenient since it makes it easier to use a very powerful (and thus expensive) instance for a short time, knowing it will terminate and avoid extra charges while idle.</p>
+<p>To avoid first having to install the necessary software environment on the newly created digitalocean instance, we will simply pull a docker image that has already been provisioned. This is particularly useful in both keeping what we information we need to send to the cloud machine consise (no need to list all dependencies) and fast (particularly in the case of installing any packages from source, such as R packages from CRAN. Thee complete installation process to generate the image we use here can take over an hour itself).</p>
+<p>The analogsea package provides nice functions for working with docker as well, as we will illustrate here.</p>
+<p>First, we can define a custom little function that will pull a given Github repo, run the script specified, and push the results back up.</p>
+<pre class="sourceCode r"><code class="sourceCode r">task &lt;-<span class="st"> </span>function(REPO, PATH, SCRIPT, <span class="dt">USER =</span> <span class="kw">Sys.getenv</span>(<span class="st">&quot;USER&quot;</span>), 
+                 <span class="dt">GH_TOKEN =</span> <span class="kw">Sys.getenv</span>(<span class="st">&quot;GH_TOKEN&quot;</span>), 
+                 <span class="dt">EMAIL =</span> <span class="kw">paste0</span>(USER, <span class="st">&quot;@&quot;</span>, USER, <span class="st">&quot;.com&quot;</span>),
+                 <span class="dt">IMG =</span> <span class="st">&quot;rocker/hadleyverse&quot;</span>){
+  <span class="kw">paste</span>(
+  <span class="kw">paste0</span>(<span class="st">&quot;-it &quot;</span>, IMG, <span class="st">&quot; bash -c </span><span class="ch">\&quot;</span><span class="st">&quot;</span>, <span class="st">&quot;git config --global user.name &quot;</span>, USER),
+  <span class="kw">paste0</span>(<span class="st">&quot;git config --global user.email &quot;</span>, EMAIL),
+  <span class="kw">paste0</span>(<span class="st">&quot;git clone &quot;</span>, <span class="st">&quot;https://&quot;</span>, USER, <span class="st">&quot;:&quot;</span>, GH_TOKEN, <span class="st">&quot;@github.com/&quot;</span>, USER, <span class="st">&quot;/&quot;</span>, REPO, <span class="st">&quot;.git&quot;</span>),
+  <span class="kw">paste0</span>(<span class="st">&quot;cd &quot;</span>, REPO),
+  <span class="kw">paste0</span>(<span class="st">&quot;cd &quot;</span>, PATH),
+  <span class="kw">paste0</span>(<span class="st">&quot;Rscript &quot;</span>, SCRIPT),
+  <span class="st">&quot;git add -A&quot;</span>,
+  <span class="st">&quot;git commit -a -m &#39;runs from droplet&#39;&quot;</span>,
+  <span class="st">&quot;git push origin master&quot;</span>,
+  <span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>,
+  <span class="dt">sep=</span><span class="st">&quot;; &quot;</span>)
+}</code></pre>
+<p>This could probably be made a bit more elegant, but the idea is simple. Note that we will clone over https, assuming a Github authentication token is available in the environment (e.g. in <code>.Rprofile</code>) as <code>GH_TOKEN</code>.</p>
+<p>To use this function to run the script <code>knit.R</code> in the <code>inst/examples</code> directory of my <code>template</code> repo, I do:</p>
+<pre class="sourceCode r"><code class="sourceCode r">tsk &lt;-<span class="st"> </span><span class="kw">task</span>(<span class="st">&quot;template&quot;</span>, <span class="st">&quot;inst/examples&quot;</span>, <span class="st">&quot;knit.R&quot;</span>, <span class="dt">IMG=</span><span class="st">&quot;cboettig/strata&quot;</span>)</code></pre>
+<p>which returns the commands we’ll need to run as a string. In this case I have set a custom docker image <code>cboettig/strata</code> that contains my standard development environment in use on my laptop, strata.</p>
+<p>If we have Docker installed on the local system, we can verify this script works locally first:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system</span>(<span class="kw">paste</span>(<span class="st">&quot;docker run --rm&quot;</span>, tsk))</code></pre>
+<p>Now we’re ready for the analogsea part to submit this job to a digitalocean machine which it will create and destroy on the fly. Note that this assumes we have a digitalocean account and have saved a personal authentication token to our environment as <code>DO_PAT</code> (otherwise analogsea will simply prompt us to autheticate manually in the browser). This also requires we have an ssh key added to our account already (at least at this time).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(analogsea)
+<span class="kw">docklet_create</span>(<span class="dt">size=</span><span class="st">&#39;512mb&#39;</span>) %&gt;%
+<span class="st">  </span><span class="kw">docklet_run</span>(tsk) %&gt;%
+<span class="st">  </span><span class="kw">droplet_delete</span>()</code></pre>
+<p>analogsea will first create the droplet of the desired size (analogsea refers to digitalocean droplets which have Docker software installed as “docklets”), then run our command and destroy the droplet.</p>
+<p>Note that the functions will only continue to the next step if the previous is successful. Consequently, if the script fails for some reason, the instance will perist and we can attempt to debug if we so choose. If we want the instance to be destroyed whether the script succeeds or fails, we can simply drop the last <code>%&gt;%</code> pipe and the destroy command will still run. (Otherwise some error handling would be reuired aroun the <code>docklet_run</code> code tomake sure it continues.</p>
+<p>Sometimes the droplet login will fail due to having had a previous digitalocean instance with the same ip (causing ssh to warn that the host identity has changed) or to allow the token to be approved. In this case, it may help to create the the droplet in a separate step, ssh into the ip returned vy <code>droplets()</code> manually outside of R, and then return to R to launch the task:</p>
+<pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">droplets</span>()
+d[[<span class="dv">2</span>]] %&gt;%<span class="st">  </span>
+<span class="st">  </span><span class="kw">docklet_run</span>(tsk) %&gt;%
+<span class="st">  </span><span class="kw">droplet_delete</span>()</code></pre>
+<p>This assumes our desired droplet is the second in the list (hence <code>d[[2]]</code>).</p>
+<p>Of course our R instance needs to persist long enough for the job to complete, so we need to be sure to run this from a machine that will itslef remain up, such as a desktop or even another server.</p>
+ 
+<!-- not that raw_content depends on custom generator, 
+     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
+</article> 
+<p> <a href="/2014/12/07/self-destroy-droplet-on-completion.html"> <em>Read more</em></a> </p>
+<br />
+<br />
+
+
+        </div>
+      
+        <div class="col-md-3">
           <header><h4><a href="/2014/11/26/coreos-cluster-gotchas.html">Coreos Cluster Gotchas</a></h4></header>
 <p><span></span></p>
 <p style="font-style:italic"> 26 Nov 2014</p>
@@ -179,6 +288,10 @@
 
 
         </div>
+      
+    </div>
+
+    <div class="row">
       
         <div class="col-md-3">
           <header><h4><a href="/2014/11/24/coreos-docker-registries-etc.html">Coreos Docker Registries Etc</a></h4></header>
@@ -340,10 +453,6 @@ ExecStart=/bin/bash -c &quot;/usr/bin/docker run image:${VERSION}&quot;</code></
 
         </div>
       
-    </div>
-
-    <div class="row">
-      
         <div class="col-md-3">
           <header><h4><a href="/2014/11/17/wssspe-feedback.html">Wssspe Feedback</a></h4></header>
 <p><span></span></p>
@@ -381,6 +490,10 @@ ExecStart=/bin/bash -c &quot;/usr/bin/docker run image:${VERSION}&quot;</code></
 
 
         </div>
+      
+    </div>
+
+    <div class="row">
       
         <div class="col-md-3">
           <header><h4><a href="/2014/11/14/nimble-explore.html">Nimble Explore</a></h4></header>
@@ -534,10 +647,6 @@ otherwise do.
 
         </div>
       
-    </div>
-
-    <div class="row">
-      
         <div class="col-md-3">
           <header><h4><a href="/2014/11/13/discrete-grid-notes.html">Discrete Grid Notes</a></h4></header>
 <p><span></span></p>
@@ -572,60 +681,6 @@ OPT &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span cl
      see _plugins/jekyll-labnotebook-plugins/raw_content --> 
 </article> 
 <p> <a href="/2014/11/13/discrete-grid-notes.html"> <em>Read more</em></a> </p>
-<br />
-<br />
-
-
-        </div>
-      
-        <div class="col-md-3">
-          <header><h4><a href="/2014/11/07/dear-docker-hub-users.html">Dear DockerHub users: please configure your repository links</a></h4></header>
-<p><span>(for security's sake!)</span></p>
-<p style="font-style:italic"> 07 Nov 2014</p>
-
-<article>
-<div class="excerpt">
-<p>The DockerHub is a great resource for discovering and distributing Dockerfiles. Many users sharing public images take advantage of the Docker Hub’s <em>Automated Build</em> configuration, which is excellent as this automatically allows the Hub to display the Dockerfile and provides some medium of security above simply downloading and running some untrusted binary black box.</p>
-<p>Unfortunately, far fewer users configure <em>Repository Links</em> to trigger builds to update even when the resulting Dockerfile is unchanged. As a result, many excellent Docker containers that are not under active development have not been rebuilt in several months, meaning that they still contain widely known dangerous security flaws such as <a href="http://en.wikipedia.org/wiki/Shellshock_(software_bug)">Shellshock</a> (September 2014).</p>
-<p>This problem is easily avoided by configuring the <em>Repository Links</em> setting to point to the repository being used as a base image in <code>FROM</code>. The official base images such as <code>debian</code> and <code>ubuntu</code> (e.g. the images with no additional namespace) are regularly updated to patch security vulnerabilities as soon as they are discovered, resulting in updates being made every few days on average. Setting the repository link to the <code>FROM</code> source allows your repository to be rebuilt as soon as its base image has been updated, ensuring that you inherit those updates.</p>
-<p>Naturally this strategy does not help if your <code>FROM</code> image isn’t an official base image and hasn’t configured <em>Repository Links</em> (or if such a break in the chain appears anywhere along the <code>FROM</code> recursion). In such cases, having a <code>RUN apt-get update &amp;&amp; apt-get upgrade -y</code> command (or equivalent option for your distribution) might be a good idea to make sure that your image at least gets the latest updates, but you’ll still need to set up some automatic or manual <em>Build Triggers</em> to ensure this is run regularly; or better yet, just <em>avoid building on or using stale images</em>.</p>
-<p>If you do have a reliable <em>Repository Links</em> chain to an official image, then <code>apt-get upgrade</code> is not necessary (and in fact is not advised in Best Practices). Instead, make sure all images in the chain call <code>apt-get update</code> in the same RUN line as <code>apt-get install -y ...</code>, which will ensure that cache is broken and the latest versions of the packages are installed. See the official <a href="https://docs.docker.com/articles/dockerfile_best-practices/">Dockerfile Best Practices</a> for more information.</p>
-<hr />
-<p><em>NB: I’m not a security professional; this just looks like common sense usage</em></p>
- 
-<!-- not that raw_content depends on custom generator, 
-     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
-</article> 
-<p> <a href="/2014/11/07/dear-docker-hub-users.html"> <em>Read more</em></a> </p>
-<br />
-<br />
-
-
-        </div>
-      
-        <div class="col-md-3">
-          <header><h4><a href="/2014/11/05/notes.html">linking binaries from other containers</a></h4></header>
-<p><span></span></p>
-<p style="font-style:italic"> 05 Nov 2014</p>
-
-<article>
-<div class="excerpt">
-<p>Been thinking about this for a while, but <span class="citation" data-cites="benmarwick">@benmarwick</span> ’s examples with <code>--volumes-from</code> convinced me to give this a try.</p>
-<p>While there’s an obvious level of convenience in having something like LaTeX bundled into the <code>hadleyverse</code> container so that users can build nice pdfs, if often feels not very docker-esque to me to just throw the kitchen sink into a container. At the risk of some added complexity, we can provide LaTeX from a dedicated TeX container to a container that doesn’t have it built in, like <code>rocker/rstudio</code>. Check this out:</p>
-<p>First, we run the docker container providing the texlive binaries as linked volume. Note that even after the 4 GB <code>texlive</code> container has been downloaded that this is slow to execute due to the volume linking flag (not really sure why that is).</p>
-<pre><code>docker run --name tex -v /usr/local/texlive leodido/texlive true</code></pre>
-<p>Once the above task is complete, we can run the <code>rstudio</code> container, which doesn’t have tex installed by itself, and access tex by linking:</p>
-<pre><code>docker run -dP --volumes-from tex \
- -e PATH=$PATH:/usr/local/texlive/2014/bin/x86_64-linux/ \
- rocker/rstudio</code></pre>
-<p>We can now log into RStudio, create a new Rnw file and presto, RStudio discovers the tex compilers and builds us a pdf. This does make our Docker execution lines a bit long, but that’s what <a href="www.fig.sh">fig</a> is for. (Or a good ole Makefile).</p>
-<p>Note this requires we build <code>texlive</code> in a way that isolates it to it’s own path (e.g. <code>/usr/local/texlive</code>). The default installation with <code>apt-get</code> installs everything in separate locations that overlap with existing directories (like <code>/usr/bin</code>), which makes linking clumsy or impossible (we would need separate paths for all the components, e.g. since shared libraries aren’t found under the <code>bin</code> path, and we cannot link such a volume to another container without destroying everything in it’s <code>/usr/bin</code>, clearly not a good idea). Instead, if we use the standard <code>texlive</code> install script from <a href="https://www.tug.org/texlive/">https://www.tug.org/texlive/</a>, this installs everything into <code>/usr/local/texlive</code> which is much more portable as illustrated above. Not quite sure if it’s actually a good idea to build containers this way or not.</p>
-<p>I’ll keep shipping latex inside the <code>hadleyverse</code> container (has about 300 MB of texlive that covers most common usecases), but this is certainly an intruging recipe to mix and match.</p>
- 
-<!-- not that raw_content depends on custom generator, 
-     see _plugins/jekyll-labnotebook-plugins/raw_content --> 
-</article> 
-<p> <a href="/2014/11/05/notes.html"> <em>Read more</em></a> </p>
 <br />
 <br />
 
