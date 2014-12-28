@@ -805,6 +805,10 @@ http://carlboettiger.info/archives/4482/index.html
  
 http://carlboettiger.info/2014/12/11/rrhack-notes.html  
 http://carlboettiger.info/2014/12/07/self-destroy-droplet-on-completion.html  
+http://carlboettiger.info/2014/12/04/lsn-nimble.html  
+http://carlboettiger.info/2014/12/04/lsn-nimble.html  
+http://carlboettiger.info/2014/12/03/nimble-explore.html  
+http://carlboettiger.info/2014/12/03/nimble-explore.html  
 http://carlboettiger.info/2014/11/26/coreos-cluster-gotchas.html  
 http://carlboettiger.info/2014/11/24/coreos-docker-registries-etc.html  
 http://carlboettiger.info/2014/11/19/coreos-and-other-infrastructure-notes.html  

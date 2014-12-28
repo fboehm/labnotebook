@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head prefix="dc: http://purl.org/dc/terms/ og: http://ogp.me/ns#"> <!-- namespaces used in metadata.html -->
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+  <title>Lsn Nimble</title>
+  <meta name="author" content="Carl Boettiger" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- HTML5 metadata -->
+<meta name="keywords" content="earlywarning" />
+<meta name="description" content="" />
+<!-- RDFa Metadata (in DublinCore) -->
+<meta property="dc:title" content="Lsn Nimble" />
+<meta property="dc:creator" content="Carl Boettiger" />
+<meta property="dc:date" content="2014-12-04 00:00:00 +0000" />
+<meta property="dc:format" content="text/html" />
+<meta property="dc:language" content="en" />
+<meta property="dc:identifier" content="/2014/12/04/lsn-nimble.html" />
+<meta property="dc:rights" content="CC0" />
+<meta property="dc:source" content="Lab Notebook" />
+<meta property="dc:subject" content="Ecology" /> 
+<meta property="dc:type" content="website" /> 
+<!-- RDFa Metadata (in OpenGraph) -->
+<meta property="og:title" content="Lsn Nimble" />
+<meta property="og:author" content="http://www.carlboettiger.info/index.html#me" />  <!-- Should be Liquid? URI? -->
+<meta property="http://ogp.me/ns/profile#first_name" content="Carl"/>
+<meta property="http://ogp.me/ns/profile#last_name" content="Boettiger"/>
+<meta property="http://ogp.me/ns/article#published_time" content="2014-12-04 00:00:00 +0000" />
+<meta property="og:site_name" content="Lab Notebook" /> <!-- Same as dc:source? -->
+<meta property="og:url" content="http://www.carlboettiger.info/2014/12/04/lsn-nimble.html" />
+<meta property="og:type" content="website" /> 
+<!-- Google Scholar Metadata -->
+<!--
+<meta name="citation_author" content="Carl Boettiger"/>
+<meta name="citation_date" content="2014-12-04 00:00:00 +0000"/>
+<meta name="citation_title" content="Lsn Nimble"/>
+<meta name="citation_journal_title" content="Lab Notebook"/>
+-->
+<!--NOTE: see also the COinS Metadata in span element in footer -->
+
+
+
+
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <!-- Help the browser identify the RSS feed automatically -->
+  <link rel="alternate" type="application/rss+xml" title="Carl Boettiger's Lab Notebook" href="/blog.xml" />
+</head>
+
+
+  <body prefix="dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/"> 
+    <!-- Navbar  ================================================== -->
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/README.html"><i class="icon-info-sign"></i></a>
+    </div>
+
+ <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+          <li  >
+          <a href="/index.html">Home</a></li>
+          <li  >
+          <a href="/vita.html">Vita</a></li>
+          <li  >
+          <a href="/research.html">Research</a></li>
+          <li  >
+          <a href="/teaching.html">Teaching</a></li>
+          <li  >
+          <a href="/community.html">Community</a></li>
+          <li  >
+          <a href="/lab-notebook.html">Lab Notebook</a></li>
+
+        </ul>
+
+      <!-- Search site using Google's index -->
+        <form class="navbar-form navbar-right" role="search" method="get" action="http://google.com/search">
+          <div class="form-group">
+            <input type="hidden" name="q" value="site:carlboettiger.info" />
+            <input type="text" class="form-control search-query" name="q" placeholder="Search"/>
+          </div>
+          <button class="btn btn-mini" type="submit"><i class="icon-search"></i></button> 
+       </form>
+
+    </div><!--/.nav-collapse -->
+  </div> <!-- /container -->
+</nav>
+
+
+
+    <div class="container"> <!-- Responsive grid layout, doesn't jump to full-width --> 
+      <header>
+        <h1 class="entry-title">Lsn Nimble</h1>
+        <h2></h2>
+      </header>
+
+      <div class="row">
+  <div class="col-md-7 col-md-offset-1">
+    <article>
+    <p>some sample data</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sde)
+<span class="kw">library</span>(nimble)
+<span class="kw">set.seed</span>(<span class="dv">123</span>)
+d &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="fl">0.5</span> *<span class="st"> </span>(<span class="dv">10</span>-x))
+s &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="dv">1</span>) 
+data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">sde.sim</span>(<span class="dt">X0=</span><span class="dv">6</span>,<span class="dt">drift=</span>d, <span class="dt">sigma=</span>s, <span class="dt">T=</span><span class="dv">20</span>, <span class="dt">N=</span><span class="dv">100</span>))</code></pre>
+<pre><code>## sigma.x not provided, attempting symbolic derivation.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(data)</code></pre>
+<figure>
+<img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-1" /><figcaption>plot of chunk unnamed-chunk-1</figcaption>
+</figure>
+<h2 id="lsn-version">LSN version</h2>
+<pre class="sourceCode r"><code class="sourceCode r">lsn &lt;-<span class="st"> </span><span class="kw">modelCode</span>({
+   theta ~<span class="st"> </span><span class="kw">dunif</span>(<span class="fl">1e-10</span>, <span class="fl">100.0</span>)
+   sigma ~<span class="st"> </span><span class="kw">dunif</span>(<span class="fl">1e-10</span>, <span class="fl">100.0</span>)
+       m ~<span class="st"> </span><span class="kw">dunif</span>(-<span class="dv">10</span>, <span class="dv">10</span>)
+    x[<span class="dv">1</span>] ~<span class="st"> </span><span class="kw">dunif</span>(<span class="dv">0</span>, <span class="dv">100</span>)
+    y[<span class="dv">1</span>] ~<span class="st"> </span><span class="kw">dunif</span>(<span class="fl">1e-10</span>, <span class="fl">100.0</span>) 
+
+  for(i in <span class="dv">1</span>:(N<span class="dv">-1</span>)){
+    mu_x[i] &lt;-<span class="st"> </span>x[i] +<span class="st"> </span>y[i] *<span class="st"> </span>(theta -<span class="st"> </span>x[i]) 
+    x[i<span class="dv">+1</span>] ~<span class="st"> </span><span class="kw">dnorm</span>(mu_t[i], <span class="dt">sd =</span> sigma) 
+    y[i<span class="dv">+1</span>] &lt;-<span class="st"> </span>y[i] +<span class="st"> </span>m *<span class="st"> </span>t[i]
+  }
+})</code></pre>
+<p>Nimble parameters. Note we’ve made time explicit, we’ll assume uniform spacing here:</p>
+<pre class="sourceCode r"><code class="sourceCode r">constants &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">N =</span> <span class="kw">length</span>(data$x), <span class="dt">t =</span> <span class="dv">1</span>:<span class="kw">length</span>(data$x))
+inits &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">theta =</span> <span class="dv">6</span>, <span class="dt">m =</span> <span class="dv">0</span>, <span class="dt">sigma =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="kw">rep</span>(<span class="dv">1</span>,constants$N))</code></pre>
+<p>and here we go as before:</p>
+<pre class="sourceCode r"><code class="sourceCode r">Rmodel &lt;-<span class="st"> </span><span class="kw">nimbleModel</span>(<span class="dt">code =</span> lsn, 
+                      <span class="dt">constants =</span> constants, 
+                      <span class="dt">data =</span> data, 
+                      <span class="dt">inits =</span> inits)
+Cmodel &lt;-<span class="st"> </span><span class="kw">compileNimble</span>(Rmodel)
+mcmcspec &lt;-<span class="st"> </span><span class="kw">MCMCspec</span>(Rmodel, <span class="dt">print=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>## [1] end sampler;   targetNode: theta
+## [2] RW sampler;   targetNode: sigma,  adaptive: TRUE,  adaptInterval: 200,  scale: 1
+## [3] end sampler;   targetNode: m
+## [4] end sampler;   targetNode: y[1]</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">Rmcmc &lt;-<span class="st"> </span><span class="kw">buildMCMC</span>(mcmcspec)
+Cmcmc &lt;-<span class="st"> </span><span class="kw">compileNimble</span>(Rmcmc, <span class="dt">project =</span> Cmodel)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Cmcmc</span>(<span class="fl">1e5</span>)</code></pre>
+<pre><code>## NULL</code></pre>
+<p>and examine results</p>
+<pre class="sourceCode r"><code class="sourceCode r">samples &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">as.matrix</span>(<span class="kw">nfVar</span>(Cmcmc, <span class="st">&#39;mvSamples&#39;</span>)))
+<span class="kw">mean</span>(samples$theta)</code></pre>
+<pre><code>## [1] 50.0709</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(samples$m)</code></pre>
+<pre><code>## [1] -0.009911516</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(samples$sigma)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(samples[ , <span class="st">&#39;m&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;m&#39;</span>)
+<span class="kw">plot</span>(samples[ , <span class="st">&#39;sigma&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(sigma))
+<span class="kw">plot</span>(samples[ , <span class="st">&#39;theta&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(theta))
+<span class="kw">plot</span>(samples[ , <span class="st">&#39;m&#39;</span>], samples[ , <span class="st">&#39;sigma&#39;</span>], <span class="dt">xlab =</span> <span class="st">&#39;m&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(simga))</code></pre>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-7" /> <img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-7" /> <img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-7" /> <img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-7" /></p>
+
+    </article>
+  </div>
+  <div class="col-md-4">
+    <div class="sidebar">
+      <aside prefix="og:http://ogp.me/ns/article#">
+  <p> <i class="icon-calendar"></i>
+    <time datetime="2014-12-04 00:00:00 +0000" 
+    property="dc:created">04 Dec 2014</time></p>
+   
+
+ <br />
+
+  
+    <p><a class="btn btn-default" rel="prev" href='/2014/12/04/lsn-nimble.html'><i class="icon-chevron-left"></i> prev</a>
+  
+  
+  <a class="btn btn-default" rel="next" href='/2014/12/07/self-destroy-droplet-on-completion.html'>next <i class="icon-chevron-right"></i></a></p>
+  
+
+  <br />
+
+  <p> <a  onclick="recordOutboundLink(this, 'Outbound Links', 'history'); 
+            return false;" 
+          class="btn btn-default" 
+          href="https://github.com/cboettig/labnotebook/commits/master/_posts/2014-12-04-lsn-nimble.md"><i class="icon-time"></i> history</a></p>
+
+  <br />
+
+  <p><i class="icon-list"></i> Posted in 
+     
+      <a rel="dc:subject" class="category" 
+         href="/categories.html#ecology">ecology</a>
+    
+    </p>
+
+  <p> <i class="icon-tag"></i> tags: 
+    
+    <!-- http://schema.org/BlogPosting/keywords -->
+    <a rel="og:tag" class="tag" 
+       href="/tags.html#earlywarning">#earlywarning</a>
+    </p>
+
+  <br/>
+
+  
+
+  <br/>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/77a2d90e7c00e2ff655be0beb8fa4b41c8e171b2/_posts/2014-12-04-lsn-nimble.md"> 77a2d90e7c00e2ff655be0beb8fa4b41c8e171b2</a></small></p>
+    
+  <br/>
+  
+
+</aside>
+
+    </div>
+  </div>
+</div>
+
+      <!-- Disqus Comments -->
+      <div class="row disqus">
+        <div class="col-md-8">          
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                var disqus_shortname = 'cboettig'; // required: replace example with your forum shortname
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </div>
+
+
+
+
+
+
+      <footer class="footer">
+
+<!--************** FOAF information to social networks ***************************** -->
+  <div class="row">
+    <div class="col-md-3 col-xs-4 socialicons" style="font-size:20px" typeof="foaf:Person" about="http://www.carlboettiger.info#me">
+      <p>
+          <script type="text/javascript" src="/assets/js/obfuscate-email-link.js"></script> 
+
+          <a rel="foaf:account" href="https://twitter.com/cboettig" 
+             onclick="recordOutboundLink(this, 'Outbound Links', 'Twitter'); 
+             return false;"><span class="showtooltip" title="follow me on twitter (reading, discussing)"><i class="fa fa-twitter"></i></span></a> 
+
+          <a rel="foaf:account" href="https://github.com/cboettig" 
+             onclick="recordOutboundLink(this, 'Outbound Links', 'Github'); 
+             return false;"><span class="showtooltip" title="follow me on Github (code, research)"><i class="fa fa-github"></i></span></a>
+      <!--
+          <a rel="foaf:account" href="https://plus.google.com/" 
+             onclick="recordOutboundLink(this, 'Outbound Links', 'GPlus'); 
+             return false;"><i class="fa fa-google-plus"></i></a>
+
+          <a rel="foaf:account" href="http://www.mendeley.com/profiles/carl-boettiger" 
+             onclick="recordOutboundLink(this, 'Outbound Links', 'Mendeley'); 
+             return false;"><img src="/assets/img/icon-mendeley.png" /></a> 
+
+           citations on google-scholar
+
+           stackoverflow
+      -->
+      <a rel="foaf:weblog" type="application/atom+xml" href="/blog.xml"  
+         class="showtooltip" title="RSS feeds for my blog-style entries. See the feed on my lab notebook (/atom.xml) to follow all entries instead." 
+         onclick="recordOutboundLink(this, 'Outbound Links', 'RSS'); 
+         return false;"><i class="fa fa-rss"></i></a>
+       </p>
+    </div>
+
+    
+    <!--**************** End social links **************************** -->
+
+
+    <div class="col-md-4 col-md-offset-1 col-xs-4">
+      <p><a onclick="recordOutboundLink(this, 'Outbound Links', 'ONS_claim'); return false;" href="http://onsclaims.wikispaces.com/"><img src="/assets/img/ons-aci2-icon.svg" alt="ONS" class="showtooltip" title="An Open Notebook Science (ONS) project claim: Entry provides all content (AC) immediately (I) or without significant delay.  See link for details"/></a></p>
+    </div>
+
+
+    <div class="col-md-3 col-md-offset-1 col-xs-4">
+      <p>
+      <a rel="license" property="http://creativecommons.org/ns#license" href="http://creativecommons.org/publicdomain/zero/1.0/" onclick="recordOutboundLink(this, 'Outbound Links', 'CC0'); return false;"><img src="/assets/img/cc-zero.svg" alt="CC0"/></a> 
+      </p>
+    </div>
+  </div>
+
+
+  
+<!-- COinS metadata (for citation managers like Zotero etc), goes in body text -->
+  <span
+      class="Z3988" 
+      title="ctx_ver=Z39.88-2004
+      &amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc
+      &amp;rfr_id=info%3Asid%2Focoins.info%3Agenerator
+      &amp;rft.title=Lsn Nimble
+      &amp;rft.creator=Carl Boettiger
+      &amp;rft.date=2014-12-04
+      &amp;rft.language=EN
+      &amp;rft.rights=CC0
+      &amp;rft_id=http://www.carlboettiger.info/2014/12/04/lsn-nimble.html">
+  </span>
+
+
+</footer>
+
+
+
+
+          <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- JQuery, used on a few pages (still?) -->
+    <!-- <script type="text/javascript" src="/assets/js/jquery.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Equations using MathJax -->
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });       </script>
+    <!-- Twitter Bootstrap Javascript -->
+    <!--  <script src="/assets/js/bootstrap.min.js"></script> -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+    
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-18401403-1']);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+  </script>
+
+
+
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+  try {
+    var pageTracker=_gat._getTracker("UA-18401403-1");
+    pageTracker._trackEvent(category, action);
+    setTimeout('document.location = "' + link.href + '"', 100)
+  }catch(err){}
+}
+</script>
+
+
+
+
+    </div>
+  </body>
+</html>
+   
