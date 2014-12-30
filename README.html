@@ -107,47 +107,35 @@
   <div class="col-md-8 col-md-offset-1">
     <article>
     <p><a href="https://travis-ci.org/cboettig/labnotebook"><embed src="https://travis-ci.org/cboettig/labnotebook.svg?branch=master" /></a></p>
-<p>Welcome to my online open lab notebook; home to all my research scribbles. This README documents the technical information about this site. If you’re looking for more about what this open lab notebook is about and why I keep it, consider starting with this <a href="http://www.carlboettiger.info/2012/09/28/Welcome-to-my-lab-notebook.html">introduction</a>, or <a href="http://www.carlboettiger.info">more about me</a>.</p>
+<p>Welcome to my online open lab notebook; home to all my research scribbles. This README documents the technical information about this site. If you’re looking for more about what this open lab notebook is about and why I keep it, consider starting with this <a href="http://www.carlboettiger.info/2012/09/28/Welcome-to-my-lab-notebook.html">introduction</a>, or <a href="http://www.carlboettiger.info">more about me</a>. <em>Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation or the University of California.</em></p>
 <ul>
-<li>Site source on Github: <a href="http://github.com/cboettig/labnotebook">cboettig/labnotebook</a>.</li>
-<li>Please <a href="https://github.com/cboettig/labnotebook/issues">report errors or give feedback</a>.</li>
+<li>Site source at <a href="http://github.com/cboettig/labnotebook">cboettig/labnotebook</a>.</li>
+<li>Please report <a href="https://github.com/cboettig/labnotebook/issues">errors or give feedback</a>.</li>
 </ul>
-<p><em>Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation or the University of California.</em></p>
 <h1 id="site-features-credits">Site Features &amp; Credits</h1>
 <ul>
 <li>Colors and syntax highlighting with <a href="http://ethanschoonover.com/solarized">Solarized</a></li>
 <li>Crisp equations rendered in <a href="http://www.mathjax.org/">Mathjax</a></li>
 <li>Reproducible code execution with <a href="http://yihui.name/knitr/">knitr</a></li>
-<li>CSS based on <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a></li>
-<li>Scalable css icons from <a href="http://fortawesome.github.com/Font-Awesome">FontAwesome</a></li>
+<li>CSS based on <a href="http://getboostrap.com">twitter bootstrap</a></li>
+<li>Scalable CSS icons from <a href="http://fortawesome.github.com/Font-Awesome">FontAwesome</a></li>
 <li>Static site generation with <a href="https://github.com/mojombo/jekyll">Jekyll</a></li>
 <li>Markdown parsing with <a href="http://johnmacfarlane.net/pandoc/">pandoc</a></li>
-<li>Twitter, Mendeley &amp; Github <a href="https://github.com/cboettig/labnotebook/tree/master/_plugins">custom plugins</a> <!-- * [Carbon-neutral site](http://www.dreamhost.com/green.cgi) hosting by [Dreamhost](http://dreamhost.org) --></li>
 <li>Site and source code hosting on <a href="https://github.com/">Github</a></li>
 <li>Uptime monitoring from my.pingdom.com; see <a href="http://stats.pingdom.com/fy1sae94ydyi/616612">status report</a></li>
 </ul>
 <h1 id="notebook-archiving-data-management">Notebook Archiving &amp; Data Management</h1>
-<p>The lab notebook is written and maintained in plain text (UTF-8) using markdown. All files are kept in a version managed repository system using <a href="http://git-scm.com/">git</a>, which provides unique SHA hashes to protect against corruption. Synchronized backups of the git repository are maintained on both local and remote servers (RAID 6) to protect against hardware failures, as well as on the public international software repository, Github <a href="https://github.com/cboettig">github.com/cboettig</a>. Version history preserves a time-line of changes and protects against user error. Archival copies of notebook entries shall be published annually to <a href="http://figshare.com">figshare</a> where they will be assigned DOIs and preserved by the <a href="http://www.clockss.org/clockss/Home">CLOCKSS</a> geopolitically distributed 12 node global archive.</p>
+<p>The lab notebook is written and maintained in plain text (UTF-8) using markdown. All files are kept in a version managed repository system using <a href="http://git-scm.com/">git</a>, which provides unique SHA hashes to protect against corruption. Synchronized backups of the git repository are maintained on both local and remote servers (RAID 6) to protect against hardware failures, as well as on the public international software repository, GitHub <a href="https://github.com/cboettig">github.com/cboettig</a>. Version history preserves a time-line of changes and protects against user error file loss. Archival copies of notebook entries shall be published annually to <a href="http://figshare.com">figshare</a> where they will be assigned DOIs and preserved by the <a href="http://www.clockss.org/clockss/Home">CLOCKSS</a> geopolitically distributed 12 node global archive.</p>
 <hr />
 <h1 id="building-from-source">Building from source</h1>
-<p>This site is developed for my own needs and may be difficult to adapt directly to another purpose. If you are new to Jekyll, consider starting with a basic Jekyll template such as <a href="http://jekyllbootstrap.com/">jekyll-bootstrap</a> which will be considerably easier to adapt than working from this repository directly.</p>
-<p>Clone the site source-code from github:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> clone https://github.com/cboettig/labnotebook.git</code></pre>
-<p>Install Ruby version &gt;= 1.9</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install ruby1.9.1-full</code></pre>
-<p>Make sure the <a href="http://askubuntu.com/questions/91693/how-do-you-uninstall-ruby-1-8-7-and-install-ruby-1-9-2">latest version is selected</a></p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> update-alternatives --config ruby
-<span class="kw">sudo</span> update-alternatives --config gem</code></pre>
-<p>Install Jekyll and the dependencies needed for a few plugins.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> bundle install</code></pre>
+<p><em>NOTE:</em> This site is developed for my own needs and may be difficult to adapt directly to another purpose. If you are new to Jekyll, consider starting with a basic Jekyll template such as <a href="http://jekyllbootstrap.com/">jekyll-bootstrap</a> which will be considerably easier to adapt than working from this repository directly.</p>
+<p>The site’s <a href="https://github.com/cboettig/labnotebook/tree/master/.travis.yml">.travis.yml</a> file contains the recipe to build this site from scratch on Travis-CI, which is how the site is currently deployed. As such, the script will always provide the current steps necessary to get the site to build (Travis-CI is based on a Ubuntu 12.04 image; these directions can be adapted as needed).</p>
+<p>This site repository also now includes a <a href="https://github.com/cboettig/labnotebook/tree/master/Dockerfile">Dockerfile</a> for generating a portable docker container to generate the site.</p>
+<p>A separate <a href="https://github.com/cboettig/labnotebook/tree/master/assets/_bootstrap-3.1.1/Dockerfile">Dockerfile for building boostrap 3.1.1 CSS</a> can be found in the <code>assets/_bootstrap-3.1.1</code> directory.</p>
 <h2 id="site-configuration">Site configuration</h2>
 <p>Fill in all elements of <code>_config.yml</code> appropriately.</p>
 <h2 id="api-key-configuration">API key configuration</h2>
 <p>Several of my custom plugins require authentication credentials to the relevant API, which are not included when forking this public repository, for obvious reasons. These credentials should be stored as secure YAML files in the project source directory, and added to both <code>.gitignore</code> and the <code>exclude</code> list of <code>_config.yml</code>. Currently credentials are only used for the Twitter and Google Analytics plugins. See the headers of these plugins for more documentation.</p>
-<h2 id="building-the-site">Building the site</h2>
-<p>To build and deploy the site simply run</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">bundle</span> exec rake site:deploy</code></pre>
-<p>or to build locally use the standard Jekyll commands (e.g. <code>jekyll serve</code>)</p>
 <h3 id="custom-plugins">Custom Plugins</h3>
 <p>I have written a series of <a href="https://github.com/cboettig/labnotebook/tree/master/_plugins/jekyll-labnotebook-plugins">custom Jekyll plugins</a> using these gems. See the header comments of each plugin for more details on their configuration and use. Most are written explicitly for my notebook and may require tweaking for general use. Plugins are frequently under development.</p>
 <hr />
@@ -156,7 +144,7 @@
 <div vocab="http://purl.org/dc/terms/" typeof="bibliographicCitation">
 <span property="creator">Carl Boettiger</span> (<span property="date">“Page publication date”</span>), <span property="title">“Page Title”</span>, <span property="source">Lab Notebook</span>, <a property="http://creativecommons.org/ns#attributionURL" href="http://carlboettiger.info">http://carlboettiger.info</a>
 </div>
-<p><br/>with appropriate page title and publication date as indicated. <a href="http://greycite.knowledgeblog.org/">Greycite</a> is an excellent online tool that can generate the citation information for any particular page given it’s URL.</p>
+<p><br/> with appropriate page title and publication date as indicated. <a href="http://greycite.knowledgeblog.org/">Greycite</a> is an excellent online tool that can generate the citation information for any particular page given it’s URL.</p>
 
     </article>
   </div>
