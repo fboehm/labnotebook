@@ -107,27 +107,72 @@
   <div class="col-md-7 col-md-offset-1">
     <article>
     <p>Sanity test with a simple model, Start with some sample data from an OU process:</p>
-<p>library(sde)set.seed(123)d &lt;- expression(0.5 * (10-x))s &lt;- expression(1) data &lt;- as.data.frame(sde.sim(X0=6,drift=d, sigma=s, T=20, N=100))sigma.x not provided, attempting symbolic derivation.</p>
-<p>plot(data)assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-2-1.pdf</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;sde&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;nimble&quot;</span>)
+<span class="kw">set.seed</span>(<span class="dv">123</span>)
+d &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="fl">0.5</span> *<span class="st"> </span>(<span class="dv">10</span>-x))
+s &lt;-<span class="st"> </span><span class="kw">expression</span>(<span class="dv">1</span>) 
+data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">sde.sim</span>(<span class="dt">X0=</span><span class="dv">6</span>,<span class="dt">drift=</span>d, <span class="dt">sigma=</span>s, <span class="dt">T=</span><span class="dv">20</span>, <span class="dt">N=</span><span class="dv">100</span>))</code></pre>
+<pre><code>sigma.x not provided, attempting symbolic derivation.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(data)</code></pre>
+<figure>
+<img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2" /><figcaption>plot of chunk unnamed-chunk-2</figcaption>
+</figure>
 <p>Specify this model in Nimble BUGS code</p>
-<p>ou &lt;- modelCode({ theta ~ dunif(1e-10, 100.0) r ~ dunif(1e-10, 20.0) sigma ~ dunif(1e-10, 100) x[1] ~ dunif(0, 100)</p>
-<p>for(t in 1:(N-1)){ mu[t] &lt;- x[t] + r * (theta - x[t]) x[t+1] ~ dnorm(mu[t], sd = sigma) } })Error in eval(expr, envir, enclos): could not find function “modelCode”</p>
+<pre class="sourceCode r"><code class="sourceCode r">ou &lt;-<span class="st"> </span><span class="kw">modelCode</span>({
+   theta ~<span class="st"> </span><span class="kw">dunif</span>(<span class="fl">1e-10</span>, <span class="fl">100.0</span>)
+       r ~<span class="st"> </span><span class="kw">dunif</span>(<span class="fl">1e-10</span>, <span class="fl">20.0</span>)
+   sigma ~<span class="st"> </span><span class="kw">dunif</span>(<span class="fl">1e-10</span>, <span class="dv">100</span>)
+    x[<span class="dv">1</span>] ~<span class="st"> </span><span class="kw">dunif</span>(<span class="dv">0</span>, <span class="dv">100</span>)
+
+  for(t in <span class="dv">1</span>:(N<span class="dv">-1</span>)){
+    mu[t] &lt;-<span class="st"> </span>x[t] +<span class="st"> </span>r *<span class="st"> </span>(theta -<span class="st"> </span>x[t]) 
+    x[t<span class="dv">+1</span>] ~<span class="st"> </span><span class="kw">dnorm</span>(mu[t], <span class="dt">sd =</span> sigma) 
+  }
+})</code></pre>
 <p>nimble parameters</p>
-<p>const &lt;- list(N = length(data$x))ou_inits &lt;- list(theta = 6, r = 1, sigma = 1)</p>
+<pre class="sourceCode r"><code class="sourceCode r">const &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">N =</span> <span class="kw">length</span>(data$x))
+ou_inits &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">theta =</span> <span class="dv">6</span>, <span class="dt">r =</span> <span class="dv">1</span>, <span class="dt">sigma =</span> <span class="dv">1</span>)</code></pre>
 <p>Create, spec, build, &amp; compile</p>
-<p>ou_Rmodel &lt;- nimbleModel(code = ou, constants = const, data = data, inits = ou_inits)Error in eval(expr, envir, enclos): could not find function “nimbleModel” ou_spec &lt;- MCMCspec(ou_Rmodel, thin=1e2)Error in eval(expr, envir, enclos): could not find function “MCMCspec” ou_Rmcmc &lt;- buildMCMC(ou_spec)Error in eval(expr, envir, enclos): could not find function “buildMCMC” ou_Cmodel &lt;- compileNimble(ou_Rmodel)Error in eval(expr, envir, enclos): could not find function “compileNimble” ou_mcmc &lt;- compileNimble(ou_Rmcmc, project = ou_Cmodel)Error in eval(expr, envir, enclos): could not find function “compileNimble”</p>
+<pre class="sourceCode r"><code class="sourceCode r">ou_Rmodel &lt;-<span class="st"> </span><span class="kw">nimbleModel</span>(<span class="dt">code =</span> ou, <span class="dt">constants =</span> const, <span class="dt">data =</span> data, <span class="dt">inits =</span> ou_inits)
+ou_spec &lt;-<span class="st"> </span><span class="kw">MCMCspec</span>(ou_Rmodel, <span class="dt">thin=</span><span class="fl">1e2</span>)
+ou_Rmcmc &lt;-<span class="st"> </span><span class="kw">buildMCMC</span>(ou_spec)
+ou_Cmodel &lt;-<span class="st"> </span><span class="kw">compileNimble</span>(ou_Rmodel)
+ou_mcmc &lt;-<span class="st"> </span><span class="kw">compileNimble</span>(ou_Rmcmc, <span class="dt">project =</span> ou_Cmodel)</code></pre>
 <p>Run the MCMC</p>
-<p>ou_mcmc(1e4)Error in eval(expr, envir, enclos): could not find function “ou_mcmc”</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ou_mcmc</span>(<span class="fl">1e4</span>)</code></pre>
+<pre><code>NULL</code></pre>
 <p>and examine the results</p>
-<p>samples &lt;- as.data.frame(as.matrix(nfVar(ou_mcmc, ‘mvSamples’)))Error in as.matrix(nfVar(ou_mcmc, “mvSamples”)): error in evaluating the argument ‘x’ in selecting a method for function ‘as.matrix’: Error: could not find function “nfVar” mean(samples<span class="math">\(theta)Error in mean(samples\)</span>theta): error in evaluating the argument ‘x’ in selecting a method for function ‘mean’: Error: object ‘samples’ not found mean(samples<span class="math">\(sigma)Error in mean(samples\)</span>sigma): error in evaluating the argument ‘x’ in selecting a method for function ‘mean’: Error: object ‘samples’ not found means(samples$r)Error in eval(expr, envir, enclos): could not find function “means”</p>
-<p>plot(samples[ , ‘r’], type = ‘l’, xlab = ‘iteration’, ylab = expression(r))Error in plot(samples[, “r”], type = “l”, xlab = “iteration”, ylab = expression(r)): error in evaluating the argument ‘x’ in selecting a method for function ‘plot’: Error: object ‘samples’ not found plot(samples[ , ‘sigma’], type = ‘l’, xlab = ‘iteration’, ylab = expression(sigma))Error in plot(samples[, “sigma”], type = “l”, xlab = “iteration”, ylab = expression(sigma)): error in evaluating the argument ‘x’ in selecting a method for function ‘plot’: Error: object ‘samples’ not found plot(samples[ , ‘theta’], type = ‘l’, xlab = ‘iteration’, ylab = expression(theta))Error in plot(samples[, “theta”], type = “l”, xlab = “iteration”, ylab = expression(theta)): error in evaluating the argument ‘x’ in selecting a method for function ‘plot’: Error: object ‘samples’ not found plot(samples[ , ‘r’], samples[ , ‘sigma’], xlab = expression(r), ylab = expression(simga))Error in plot(samples[, “r”], samples[, “sigma”], xlab = expression(r), : error in evaluating the argument ‘x’ in selecting a method for function ‘plot’: Error: object ‘samples’ not found hist(samples[, ‘theta’])Error in hist(samples[, “theta”]): object ‘samples’ not found</p>
+<pre class="sourceCode r"><code class="sourceCode r">samples &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">as.matrix</span>(<span class="kw">nfVar</span>(ou_mcmc, <span class="st">&#39;mvSamples&#39;</span>)))
+<span class="kw">mean</span>(samples$theta)</code></pre>
+<pre><code>[1] 10.47953</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(samples$sigma)</code></pre>
+<pre><code>[1] 0.392594</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">means</span>(samples$r)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): could not find function &quot;means&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(samples[ , <span class="st">&#39;r&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(r))
+<span class="kw">plot</span>(samples[ , <span class="st">&#39;sigma&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(sigma))
+<span class="kw">plot</span>(samples[ , <span class="st">&#39;theta&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(theta))
+<span class="kw">plot</span>(samples[ , <span class="st">&#39;r&#39;</span>], samples[ , <span class="st">&#39;sigma&#39;</span>], <span class="dt">xlab =</span> <span class="kw">expression</span>(r), <span class="dt">ylab =</span> <span class="kw">expression</span>(simga))
+<span class="kw">hist</span>(samples[, <span class="st">&#39;theta&#39;</span>])</code></pre>
+<p><img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" /> <img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-8-2.png" alt="plot of chunk unnamed-chunk-8" /> <img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-8-3.png" alt="plot of chunk unnamed-chunk-8" /> <img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-8-4.png" alt="plot of chunk unnamed-chunk-8" /> <img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-8-5.png" alt="plot of chunk unnamed-chunk-8" /></p>
 <h3 id="block-sampler">Block sampler</h3>
-<p>ou_spec$addSampler(“RW_block”, list(targetNodes=c(‘r’,‘sigma’,‘theta’), adaptInterval=100))Error in eval(expr, envir, enclos): object ‘ou_spec’ not found ou_Rmcmc2 &lt;- buildMCMC(ou_spec)Error in eval(expr, envir, enclos): could not find function “buildMCMC”</p>
-<p>ou_mcmc2 &lt;- compileNimble(ou_Rmcmc2, project=ou_Rmodel, resetFunctions=TRUE)Error in eval(expr, envir, enclos): could not find function “compileNimble”</p>
+<pre class="sourceCode r"><code class="sourceCode r">ou_spec$<span class="kw">addSampler</span>(<span class="st">&quot;RW_block&quot;</span>, <span class="kw">list</span>(<span class="dt">targetNodes=</span><span class="kw">c</span>(<span class="st">&#39;r&#39;</span>,<span class="st">&#39;sigma&#39;</span>,<span class="st">&#39;theta&#39;</span>), <span class="dt">adaptInterval=</span><span class="dv">100</span>))</code></pre>
+<pre><code>[4] RW_block sampler;   targetNodes: r, sigma, theta,  adaptive: TRUE,  adaptInterval: 100,  scale: 1,  propCov: identity</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">ou_Rmcmc2 &lt;-<span class="st"> </span><span class="kw">buildMCMC</span>(ou_spec)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">ou_mcmc2 &lt;-<span class="st"> </span><span class="kw">compileNimble</span>(ou_Rmcmc2, <span class="dt">project=</span>ou_Rmodel, <span class="dt">resetFunctions=</span><span class="ot">TRUE</span>)</code></pre>
 <p>(not clear why we use the old project here; but seems to allow us to inherit from previous settings, e.g. the monitors from <code>mcmcSpec()</code> initialization)</p>
-<p>ou_mcmc2(1e4)Error in eval(expr, envir, enclos): could not find function “ou_mcmc2”</p>
-<p>samples2 &lt;- as.data.frame(as.matrix(nfVar(ou_mcmc2, ‘mvSamples’)))Error in as.matrix(nfVar(ou_mcmc2, “mvSamples”)): error in evaluating the argument ‘x’ in selecting a method for function ‘as.matrix’: Error: could not find function “nfVar” mean(samples2<span class="math">\(theta)Error in mean(samples2\)</span>theta): error in evaluating the argument ‘x’ in selecting a method for function ‘mean’: Error: object ‘samples2’ not found</p>
-<p>plot(samples2[ , ‘r’], type = ‘l’, xlab = ‘iteration’, ylab = expression(r))Error in plot(samples2[, “r”], type = “l”, xlab = “iteration”, ylab = expression(r)): error in evaluating the argument ‘x’ in selecting a method for function ‘plot’: Error: object ‘samples2’ not found plot(samples2[ , ‘sigma’], type = ‘l’, xlab = ‘iteration’, ylab = expression(sigma))Error in plot(samples2[, “sigma”], type = “l”, xlab = “iteration”, ylab = expression(sigma)): error in evaluating the argument ‘x’ in selecting a method for function ‘plot’: Error: object ‘samples2’ not found plot(samples2[ , ‘theta’], type = ‘l’, xlab = ‘iteration’, ylab = expression(theta))Error in plot(samples2[, “theta”], type = “l”, xlab = “iteration”, ylab = expression(theta)): error in evaluating the argument ‘x’ in selecting a method for function ‘plot’: Error: object ‘samples2’ not found plot(samples2[ , ‘r’], samples[ , ‘sigma’], xlab = expression(r), ylab = expression(simga))Error in plot(samples2[, “r”], samples[, “sigma”], xlab = expression(r), : error in evaluating the argument ‘x’ in selecting a method for function ‘plot’: Error: object ‘samples2’ not found hist(samples2[ , ‘theta’])Error in hist(samples2[, “theta”]): object ‘samples2’ not found</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ou_mcmc2</span>(<span class="fl">1e4</span>)</code></pre>
+<pre><code>NULL</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">samples2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">as.matrix</span>(<span class="kw">nfVar</span>(ou_mcmc2, <span class="st">&#39;mvSamples&#39;</span>)))
+<span class="kw">mean</span>(samples2$theta)</code></pre>
+<pre><code>[1] 10.46894</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(samples2[ , <span class="st">&#39;r&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(r))
+<span class="kw">plot</span>(samples2[ , <span class="st">&#39;sigma&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(sigma))
+<span class="kw">plot</span>(samples2[ , <span class="st">&#39;theta&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>, <span class="dt">ylab =</span> <span class="kw">expression</span>(theta))
+<span class="kw">plot</span>(samples2[ , <span class="st">&#39;r&#39;</span>], samples[ , <span class="st">&#39;sigma&#39;</span>], <span class="dt">xlab =</span> <span class="kw">expression</span>(r), <span class="dt">ylab =</span> <span class="kw">expression</span>(simga))
+<span class="kw">hist</span>(samples2[ , <span class="st">&#39;theta&#39;</span>])</code></pre>
+<p><img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13" /> <img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-13-2.png" alt="plot of chunk unnamed-chunk-13" /> <img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-13-3.png" alt="plot of chunk unnamed-chunk-13" /> <img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-13-4.png" alt="plot of chunk unnamed-chunk-13" /> <img src="/assets/figures/posts/2014-12-03-ou-model-in-nimble/unnamed-chunk-13-5.png" alt="plot of chunk unnamed-chunk-13" /></p>
 <hr />
 
     </article>
