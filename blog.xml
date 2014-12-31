@@ -4,7 +4,7 @@
  <title>Lab Notebook - R</title>
  <link href="/blog.xml" rel="self"/>
  <link href="/"/>
- <updated>2014-12-31T18:00:57+00:00</updated>
+ <updated>2014-12-31T18:23:48+00:00</updated>
  <id>http://www.carlboettiger.info</id>
  <author>
    <name>Carl Boettiger</name>
@@ -109,11 +109,11 @@
 &lt;!-- comments
 Ilya raises the question: Why not just use Github? I think it is important to note that:
 
-a) Github isn't forever, repositories come and go all the time, or move to new links, etc
+a) Github isn&#39;t forever, repositories come and go all the time, or move to new links, etc
 
 b) Re-creating and running an NIH-Github would be both expensive (Gitlab notwithstanding) and redundant -- researchers would continue to use Github etc.
 
-c) Github provides somewhat limited query-able metadata, that doesn't capture even the minimal list of fields suggested by the report.
+c) Github provides somewhat limited query-able metadata, that doesn&#39;t capture even the minimal list of fields suggested by the report.
 Leveraging existing scientific data repositories by linking them to versioned releases on software repositories addresses each of these problems.
 
 --&gt;
@@ -691,7 +691,7 @@ ex2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
 &lt;h3 id=&quot;share-first-fix-later&quot;&gt;Share first, fix later&lt;/h3&gt;
 &lt;p&gt;If code review should apply to all levels of code or be reserved for scientific software may still be an open question. What we should be able to agree on is in the publishing of code in the first place:&lt;/p&gt;
 &lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;
-&lt;a href=&quot;https://twitter.com/cboettig&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;cboettig&quot;&gt;@cboettig&lt;/span&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/kaythaney&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;kaythaney&quot;&gt;@kaythaney&lt;/span&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/nickbarnes&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;nickbarnes&quot;&gt;@nickbarnes&lt;/span&gt;&lt;/a&gt; I think code sharing should be mandatory &lt;em&gt;shrug&lt;/em&gt;. It's part of the methods. I reject papers w/o it.
+&lt;a href=&quot;https://twitter.com/cboettig&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;cboettig&quot;&gt;@cboettig&lt;/span&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/kaythaney&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;kaythaney&quot;&gt;@kaythaney&lt;/span&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/nickbarnes&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;nickbarnes&quot;&gt;@nickbarnes&lt;/span&gt;&lt;/a&gt; I think code sharing should be mandatory &lt;em&gt;shrug&lt;/em&gt;. It&#39;s part of the methods. I reject papers w/o it.
 &lt;/p&gt;
 — Titus Brown (&lt;span class=&quot;citation&quot; data-cites=&quot;ctitusbrown&quot;&gt;@ctitusbrown&lt;/span&gt;) &lt;a href=&quot;https://twitter.com/ctitusbrown/statuses/382903924253929472&quot;&gt;September 25, 2013&lt;/a&gt;
 &lt;/blockquote&gt;
@@ -705,7 +705,7 @@ ex2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quot
 &lt;p&gt;which asks that the data be placed in a appropriate permanent repository or otherwise placed in the supplementary materials (see &lt;a href=&quot;http://www.sciencemag.org/site/feature/contribinfo/prep/gen_info.xhtml#dataavail&quot;&gt;information for authors&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Yet I have not seen code provided for any analysis I have read in Science since 2011. Either we have a very different understanding of what it means to use computer codes in the analysis of data or &lt;em&gt;Science&lt;/em&gt; grossly neglects its own policy.&lt;a href=&quot;#fn3&quot; class=&quot;footnoteRef&quot; id=&quot;fnref3&quot;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; Not to pick on them of course, few other journals have explicitly adopted such a policy.&lt;/p&gt;
 &lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;
-.&lt;a href=&quot;https://twitter.com/cboettig&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;cboettig&quot;&gt;@cboettig&lt;/span&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/kaythaney&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;kaythaney&quot;&gt;@kaythaney&lt;/span&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/nickbarnes&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;nickbarnes&quot;&gt;@nickbarnes&lt;/span&gt;&lt;/a&gt; As one of my grad students said to me, “I don't understand why ‘must share code’ is a radical opinion.”
+.&lt;a href=&quot;https://twitter.com/cboettig&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;cboettig&quot;&gt;@cboettig&lt;/span&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/kaythaney&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;kaythaney&quot;&gt;@kaythaney&lt;/span&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/nickbarnes&quot;&gt;&lt;span class=&quot;citation&quot; data-cites=&quot;nickbarnes&quot;&gt;@nickbarnes&lt;/span&gt;&lt;/a&gt; As one of my grad students said to me, “I don&#39;t understand why ‘must share code’ is a radical opinion.”
 &lt;/p&gt;
 — Titus Brown (&lt;span class=&quot;citation&quot; data-cites=&quot;ctitusbrown&quot;&gt;@ctitusbrown&lt;/span&gt;) &lt;a href=&quot;https://twitter.com/ctitusbrown/statuses/382904483102982145&quot;&gt;September 25, 2013&lt;/a&gt;
 &lt;/blockquote&gt;
@@ -2033,11 +2033,10 @@ pal2 &amp;lt;-&lt;span class=&quot;st&quot;&gt; &lt;/span&gt;&lt;span class=&quo
 &lt;img src=&quot;http://m.friendfeed-media.com/a9192c4f24f3b1cc96c306e48bad1c498cab0c23&quot; /&gt;
 &lt;/figure&gt;
 &lt;p&gt;Our session on Open Notebook Science quickly gave us reason to worry when the projector which had done fine thus far suddenly refused to work. Nevermind, we all work with technology too frequently to be unfamiliar with its failure - we would do without. If you were there and you’re wondering what you missed, here are my slides.  See &lt;a href=&quot;http://usefulchem.blogspot.com/2011/01/science-online-2011-thoughts.html&quot;&gt;Jean-Claude’s post&lt;/a&gt; for more on our session.&lt;/p&gt;
-&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/6606229&quot; width=&quot;427&quot; height=&quot;356&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px&quot; allowfullscreen webkitallowfullscreen mozallowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; 
+&lt;iframe src=&quot;http://www.slideshare.net/slideshow/embed_code/6606229&quot; width=&quot;427&quot; height=&quot;356&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px&quot; allowfullscreen webkitallowfullscreen mozallowfullscreen&gt; &lt;/iframe&gt; 
+&lt;div style=&quot;margin-bottom:5px&quot;&gt;
 &lt;strong&gt; &lt;a href=&quot;http://www.slideshare.net/cboettig/scioslides&quot; title=&quot;Scioslides&quot; target=&quot;_blank&quot;&gt;Scioslides&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;http://www.slideshare.net/cboettig&quot; target=&quot;_blank&quot;&gt;Carl Boettiger&lt;/a&gt;&lt;/strong&gt;
 &lt;/div&gt;
-
-
 &lt;p&gt;I described the tools I use to make my notebook more automated and complete and discussed my vision of a social lab notebook.  In face of the observation that many open database efforts face the tragedy of commons effect (many researchers may use the resources but few contribute) I discussed some of the many immediate benefits the practice has had for me.  I must say what an immense treat it is to be able to finish a session and see the immediate feedback and reactions it has generated through the online streams.&lt;/p&gt;
 &lt;p&gt;The video recording of our session has now been posted:&lt;/p&gt;
 &lt;iframe src=&quot;http://player.vimeo.com/video/20100632&quot; width=&quot;500&quot; height=&quot;281&quot; frameborder=&quot;0&quot; webkitAllowFullScreen mozallowfullscreen allowFullScreen&gt;&lt;/iframe&gt; &lt;p&gt;

@@ -123,19 +123,19 @@
 <p>Add support for flash uploader (See <a href="http://code.google.com/p/mollify/wiki/ConfigurationAdditionalOptions">additional configuration directions</a>)</p>
 <p>Go to mollify/ directory, edit index.html: In the section about mollify-init that looks like:</p>
 <pre class="sourceCode php"><code class="sourceCode php">
-&lt;script type=&quot;text/javascript&quot;&gt;
-    mollify.init({
-        &quot;service-path&quot;: &quot;backend/&quot;,
-    });
+&lt;script type=<span class="st">&quot;text/javascript&quot;</span>&gt;
+    mollify.init<span class="ot">(</span>{
+        <span class="st">&quot;service-path&quot;</span>: <span class="st">&quot;backend/&quot;</span><span class="ot">,</span>
+    }<span class="ot">);</span>
 &lt;/script&gt;</code></pre>
 <p>edit to read as:</p>
 <pre class="sourceCode php"><code class="sourceCode php">
-&lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot; src=&quot;client/swfupload.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    mollify.init({
-        &quot;service-path&quot;: &quot;backend/&quot;,
-        &quot;file-uploader&quot;: &quot;flash&quot;
-    });
+&lt;script type=<span class="st">&quot;text/javascript&quot;</span> language=<span class="st">&quot;javascript&quot;</span> src=<span class="st">&quot;client/swfupload.js&quot;</span>&gt;&lt;/script&gt;
+&lt;script type=<span class="st">&quot;text/javascript&quot;</span>&gt;
+    mollify.init<span class="ot">(</span>{
+        <span class="st">&quot;service-path&quot;</span>: <span class="st">&quot;backend/&quot;</span><span class="ot">,</span>
+        <span class="st">&quot;file-uploader&quot;</span>: <span class="st">&quot;flash&quot;</span>
+    }<span class="ot">);</span>
 &lt;/script&gt;</code></pre>
 <p>Has plugin support which should deliver previews, a file viewer and text editors, but I was unable to get these to work. Is activated using the following php in configuration file:</p>
 <pre class="sourceCode php"><code class="sourceCode php">
@@ -211,7 +211,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/c29b8c7b8f7edf1a0abac92b181b0422d63c8b0a/_posts/2011-11-01-server-file-management-from-bowser-ajaxplorer-mollify.md"> c29b8c7b8f7edf1a0abac92b181b0422d63c8b0a</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/fb7bfc39344dcb49635cf959a67c666ff41c80a8/_posts/2011-11-01-server-file-management-from-bowser-ajaxplorer-mollify.md"> fb7bfc39344dcb49635cf959a67c666ff41c80a8</a></small></p>
     
   <br/>
   

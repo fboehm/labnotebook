@@ -121,7 +121,7 @@
 <img src="http://openwetware.org/images/math/0/a/c/0ac79d1c40c55d61a5acf6e240f06438.png" alt="\begin{align} P(x_1, x_2, x_3, x_4) =&amp; \int d x_7 \Biggl[ \left[ \int d x_5 w(x_7, x_5, t_5) w(x_5, x_1, t_1) w(x_5, x_2, t_1) \right] \\ &amp; \times \left[ \int d x_6 w(x_7, x_6, t_6) w(x_6, x_3, t_3) w(x_6, x_4, t_3) \right] P(x_7) \Biggr] \end{align}" /><figcaption>\begin{align} P(x_1, x_2, x_3, x_4) =&amp; \int d x_7 \Biggl[ \left[ \int d x_5 w(x_7, x_5, t_5) w(x_5, x_1, t_1) w(x_5, x_2, t_1) \right] \\ &amp; \times \left[ \int d x_6 w(x_7, x_6, t_6) w(x_6, x_3, t_3) w(x_6, x_4, t_3) \right] P(x_7) \Biggr] \end{align}</figcaption>
 </figure>
 <ul>
-<li><p>The transition density from any state to any state can be represented as a matrix over the domain of the integral. So at each node, we have a transition probability of entering any state that node can assume from any state from which its ancestor could assume. Though we have an analytical expression for this probability, we must evaluate it <em>n</em><sup>2</sup> times for each matrix, then perform the matrix multiplications that are the equivalent discretization of the integral formulation above. If the tips are known they are represented instead by a single column of that matrix – i.e. transitions from any state to the known tip state. So:</p></li>
+<li><p>The transition density from any state to any state can be represented as a matrix over the domain of the integral. So at each node, we have a transition probability of entering any state that node can assume from any state from which its ancestor could assume. Though we have an analytical expression for this probability, we must evaluate it <em>n</em><sup>2</sup> times for each matrix, then perform the matrix multiplications that are the equivalent discretization of the integral formulation above. If the tips are known they are represented instead by a single column of that matrix – i.e. transitions from any state to the known tip state. So:</p></li>
 <li><p>Taking the element-wise product (denoted *) of the tip vectors times the matrix (chalkboard boldface) of the internal node prunes that node down to a single vector, and this can be recursed:</p></li>
 </ul>
 <figure>
@@ -154,7 +154,7 @@
 <p>The Labrid example tackles this problem by attempting to generate a reasonable distribution of paintings from the data by clustering.</p>
 <h3 id="distributions-of-paintings">Distributions of Paintings</h3>
 <ul>
-<li><p>We’d like not to actually integrate over paintings, but over stochastic mappings (continuous time finite state Markov chains) that generate the paintings. This reduces the parameter set (i.e. two additional parameters for the two regimes case, or six for the three regime case, without assuming equal forward-back rates or an ordering of the peaks).</p></li>
+<li><p>We’d like not to actually integrate over paintings, but over stochastic mappings (continuous time finite state Markov chains) that generate the paintings. This reduces the parameter set (i.e. two additional parameters for the two regimes case, or six for the three regime case, without assuming equal forward-back rates or an ordering of the peaks).</p></li>
 <li><p>The most straight-forward implementation of this approach is to generate paintings from a particular parameterization of a transition matrix and calculate the probability of the data of each. Averaging these probabilities effectively integrates over the distribution of paintings generated from the transition density. Unfortunately, this may not be much faster. However, we can do better than this by realizing that <em>given a painting, we can compute the probability that it is generated from any particular transition matrix!</em></p></li>
 </ul>
 <p><br /> - In this way we can construct the probability of the parameter set of the regimes <img src="http://openwetware.org/images/math/1/c/8/1c876a2b07f33c4f32b5f73a9d790a18.png" alt="\vec \theta" />, and the transition probabilities <img src="http://openwetware.org/images/math/d/4/5/d45a4aa156a8ac07ab80e7d9cf5fa79f.png" alt="\mathbb{Q}" /> through a particular painting <em>C</em></p>
@@ -206,7 +206,7 @@
   
 
   <br/>
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/c29b8c7b8f7edf1a0abac92b181b0422d63c8b0a/_posts/2010-06-05-Likelihood-Calculation.md"> c29b8c7b8f7edf1a0abac92b181b0422d63c8b0a</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="https://github.com/cboettig/labnotebook/commit/8c159703b2a376bd2c60f16e0e0d5cea04d20876/_posts/2010-06-05-Likelihood-Calculation.md"> 8c159703b2a376bd2c60f16e0e0d5cea04d20876</a></small></p>
     
   <br/>
   
