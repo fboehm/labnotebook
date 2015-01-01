@@ -108,7 +108,7 @@
     <h4>  <a property="account" href="https://github.com/cboettig" onclick="recordOutboundLink(this, 'Outbound Links', 'Github'); return false;"><i class="icon-github" alt="github"></i> Coding </a></h4> 
     <div class="excerpt">
       <div class="scroll">
-        <ul><li>cboettig commented on issue yihui/knitr#754: <em>Hi Yihui, For reasons I don't understand, adding the block of code you have above as a chunk in an .Rmd works fine, but adding the same block in a b…</em> <a href="https://github.com/yihui/knitr/issues/754#issuecomment-68470335">09:31 2014/12/31</a></li><li>cboettig created repository cboettig/cboettig.github.io: <em></em> <a href="https://github.com/cboettig/cboettig.github.io">07:57 2014/12/31</a></li><li>cboettig pushed to gh-pages at cboettig/labnotebook: <em>remove temp files</em> <a href="https://github.com/cboettig/labnotebook/compare/e3fc3daae1...f1db343a1c">06:47 2014/12/31</a></li><li>cboettig pushed to master at cboettig/labnotebook: <em>still tuning local build and deploy</em> <a href="https://github.com/cboettig/labnotebook/compare/b88aaae5b9...1374ac18cd">06:47 2014/12/31</a></li><li>cboettig pushed to gh-pages at cboettig/labnotebook: <em>Site updated</em> <a href="https://github.com/cboettig/labnotebook/compare/92f0523ccb...e3fc3daae1">06:42 2014/12/31</a></li></ul>
+        <ul><li>cboettig pushed to master at cboettig/2014: <em>update _config.yml to drop the year</em> <a href="https://github.com/cboettig/2014/compare/88e574ba48...ae413e9228">04:49 2015/01/01</a></li><li>cboettig pushed to gh-pages at cboettig/2014: <em>rename</em> <a href="https://github.com/cboettig/2014/compare/af9834ea9c...fffa227d8b">04:48 2015/01/01</a></li><li>cboettig created branch gh-pages at cboettig/2014: <em></em> <a href="https://github.com/cboettig/2014/compare/gh-pages">04:46 2015/01/01</a></li><li>cboettig created branch master at cboettig/2014: <em></em> <a href="https://github.com/cboettig/2014/compare/master">04:45 2015/01/01</a></li><li>cboettig created repository cboettig/2014: <em></em> <a href="https://github.com/cboettig/2014">04:43 2015/01/01</a></li></ul>
       </div>
     </div>
   </div>
@@ -541,29 +541,95 @@ ou_mcmc &lt;-<span class="st"> </span><span class="kw">compileNimble</span>(ou_R
 <div class="excerpt">
 <p>Working through quick-start example in <a href="http://r-nimble.org/manuals/NimbleUserManual.pdf">nimble manual</a></p>
 <p>The manual gives essentially no introduction to what appears to be a classic BUGS example model for stochastically failing pumps.</p>
-<p>library(nimble)pumpCode &lt;- modelCode({ for (i in 1:N){ theta[i] ~ dgamma(alpha,beta) lambda[i] &lt;- theta[i]*t[i] x[i] ~ dpois(lambda[i]) } alpha ~ dexp(1.0) beta ~ dgamma(0.1,1.0) })</p>
-<p>pumpConsts &lt;- list(N = 10, t = c(94.3, 15.7, 62.9, 126, 5.24, 31.4, 1.05, 1.05, 2.1, 10.5))pumpData &lt;- list(x = c(5, 1, 5, 14, 3, 19, 1, 1, 4, 22))</p>
-<p>pumpInits &lt;- list(alpha = 1, beta = 1, theta = rep(0.1, pumpConsts$N))</p>
-<p>pump &lt;- nimbleModel(code = pumpCode, name = ‘pump’, constants = pumpConsts, data = pumpData, inits = pumpInits)pump$getNodeNames() [1] “alpha” “beta” “lifted_d1_over_beta” [4] “theta[1]” “theta[2]” “theta[3]”<br /> [7] “theta[4]” “theta[5]” “theta[6]”<br />[10] “theta[7]” “theta[8]” “theta[9]”<br />[13] “theta[10]” “lambda[1]” “lambda[2]”<br />[16] “lambda[3]” “lambda[4]” “lambda[5]”<br />[19] “lambda[6]” “lambda[7]” “lambda[8]”<br />[22] “lambda[9]” “lambda[10]” “x[1]”<br />[25] “x[2]” “x[3]” “x[4]”<br />[28] “x[5]” “x[6]” “x[7]”<br />[31] “x[8]” “x[9]” “x[10]”</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nimble)
+pumpCode &lt;-<span class="st"> </span><span class="kw">modelCode</span>({
+  for (i in <span class="dv">1</span>:N){
+    theta[i] ~<span class="st"> </span><span class="kw">dgamma</span>(alpha,beta)
+    lambda[i] &lt;-<span class="st"> </span>theta[i]*t[i]
+    x[i] ~<span class="st"> </span><span class="kw">dpois</span>(lambda[i])
+  }
+  alpha ~<span class="st"> </span><span class="kw">dexp</span>(<span class="fl">1.0</span>)
+  beta ~<span class="st"> </span><span class="kw">dgamma</span>(<span class="fl">0.1</span>,<span class="fl">1.0</span>)
+})</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pumpConsts &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">N =</span> <span class="dv">10</span>, 
+                   <span class="dt">t =</span> <span class="kw">c</span>(<span class="fl">94.3</span>, <span class="fl">15.7</span>, <span class="fl">62.9</span>, <span class="dv">126</span>, <span class="fl">5.24</span>,
+                         <span class="fl">31.4</span>, <span class="fl">1.05</span>, <span class="fl">1.05</span>, <span class="fl">2.1</span>, <span class="fl">10.5</span>))
+pumpData &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">14</span>, <span class="dv">3</span>, <span class="dv">19</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">22</span>))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pumpInits &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">alpha =</span> <span class="dv">1</span>, 
+                  <span class="dt">beta =</span> <span class="dv">1</span>,
+                  <span class="dt">theta =</span> <span class="kw">rep</span>(<span class="fl">0.1</span>, pumpConsts$N))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pump &lt;-<span class="st"> </span><span class="kw">nimbleModel</span>(<span class="dt">code =</span> pumpCode, 
+                    <span class="dt">name =</span> <span class="st">&#39;pump&#39;</span>, 
+                    <span class="dt">constants =</span> pumpConsts,
+                    <span class="dt">data =</span> pumpData, 
+                    <span class="dt">inits =</span> pumpInits)
+
+pump$<span class="kw">getNodeNames</span>()</code></pre>
+<pre><code> [1] &quot;alpha&quot;               &quot;beta&quot;                &quot;lifted_d1_over_beta&quot;
+ [4] &quot;theta[1]&quot;            &quot;theta[2]&quot;            &quot;theta[3]&quot;           
+ [7] &quot;theta[4]&quot;            &quot;theta[5]&quot;            &quot;theta[6]&quot;           
+[10] &quot;theta[7]&quot;            &quot;theta[8]&quot;            &quot;theta[9]&quot;           
+[13] &quot;theta[10]&quot;           &quot;lambda[1]&quot;           &quot;lambda[2]&quot;          
+[16] &quot;lambda[3]&quot;           &quot;lambda[4]&quot;           &quot;lambda[5]&quot;          
+[19] &quot;lambda[6]&quot;           &quot;lambda[7]&quot;           &quot;lambda[8]&quot;          
+[22] &quot;lambda[9]&quot;           &quot;lambda[10]&quot;          &quot;x[1]&quot;               
+[25] &quot;x[2]&quot;                &quot;x[3]&quot;                &quot;x[4]&quot;               
+[28] &quot;x[5]&quot;                &quot;x[6]&quot;                &quot;x[7]&quot;               
+[31] &quot;x[8]&quot;                &quot;x[9]&quot;                &quot;x[10]&quot;              </code></pre>
 <p>Note that we can see <code>theta</code> has our initial conditions, while <code>lambda</code> has not yet been initialized:</p>
-<p>pump<span class="math">\(theta [1] 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 pump\)</span>lambda [1] NA NA NA NA NA NA NA NA NA NA</p>
+<pre class="sourceCode r"><code class="sourceCode r">pump$theta</code></pre>
+<pre><code> [1] 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pump$lambda</code></pre>
+<pre><code> [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
 <p>Hmm, initially we cannot simulate <code>theta</code> values though (or rather, we just get NaNs and warnings if we do). At the moment I’m not clear on why, though seems to be due to the lifted node:</p>
-<p>simulate(pump, ‘theta’)pump$theta [1] NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN</p>
-<p>pump$lifted_d1_over_beta[1] NA</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simulate</span>(pump, <span class="st">&#39;theta&#39;</span>)
+pump$theta</code></pre>
+<pre><code> [1] NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pump$lifted_d1_over_beta</code></pre>
+<pre><code>[1] NA</code></pre>
 <p>If we calculate the log probability density of the determinstic dependencies of alpha and beta nodes (i.e. the lifted node) then we’re okay:</p>
-<p>set.seed(0) ## This makes the simulations here reproduciblecalculate(pump, pump$getDependencies(c(‘alpha’, ‘beta’), determOnly = TRUE))[1] 0 simulate(pump, ‘theta’)</p>
-<p>pump$theta [1] 1.79180692 0.29592523 0.08369014 0.83617765 1.22254365 1.15835525 [7] 0.99001994 0.30737332 0.09461909 0.15720154</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">0</span>) ## This makes the simulations here reproducible
+<span class="kw">calculate</span>(pump, pump$<span class="kw">getDependencies</span>(<span class="kw">c</span>(<span class="st">&#39;alpha&#39;</span>, <span class="st">&#39;beta&#39;</span>), <span class="dt">determOnly =</span> <span class="ot">TRUE</span>))</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simulate</span>(pump, <span class="st">&#39;theta&#39;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pump$theta</code></pre>
+<pre><code> [1] 1.79180692 0.29592523 0.08369014 0.83617765 1.22254365 1.15835525
+ [7] 0.99001994 0.30737332 0.09461909 0.15720154</code></pre>
 <p>We still need to initialize lambda, e.g. by calculating the probability density on those nodes:</p>
-<p>calculate(pump, ‘lambda’)[1] 0 pump$lambda [1] 168.9673926 4.6460261 5.2641096 105.3583839 6.4061287 [6] 36.3723548 1.0395209 0.3227420 0.1987001 1.6506161</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calculate</span>(pump, <span class="st">&#39;lambda&#39;</span>)</code></pre>
+<pre><code>[1] 0</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pump$lambda</code></pre>
+<pre><code> [1] 168.9673926   4.6460261   5.2641096 105.3583839   6.4061287
+ [6]  36.3723548   1.0395209   0.3227420   0.1987001   1.6506161</code></pre>
 <p>though not entirely clear to me why the guide prefers to do this as the dependencies of theta (which clearly include lambda, but also other things). Also not clear if these <code>calculate</code> steps are necessary to proceed with the <code>MCMCspec</code> and <code>buildMCMC</code>, or compile steps. Let’s reset the model<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> and find out:</p>
-<p>pump &lt;- nimbleModel(code = pumpCode, name = ‘pump’, constants = pumpConsts, data = pumpData, inits = pumpInits)pump<span class="math">\(theta [1] 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 pump\)</span>lambda [1] NA NA NA NA NA NA NA NA NA NA</p>
+<pre class="sourceCode r"><code class="sourceCode r">pump &lt;-<span class="st"> </span><span class="kw">nimbleModel</span>(<span class="dt">code =</span> pumpCode, 
+                    <span class="dt">name =</span> <span class="st">&#39;pump&#39;</span>, 
+                    <span class="dt">constants =</span> pumpConsts,
+                    <span class="dt">data =</span> pumpData, 
+                    <span class="dt">inits =</span> pumpInits)
+
+pump$theta</code></pre>
+<pre><code> [1] 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pump$lambda</code></pre>
+<pre><code> [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
 <p>Good, we’re reset. Now we try:</p>
-<p>Cpump &lt;- compileNimble(pump)pumpSpec &lt;- MCMCspec(pump)pumpSpec$addMonitors(c(‘alpha’, ‘beta’, ‘theta’))thin = 1: alpha, beta, theta</p>
-<p>pumpMCMC &lt;- buildMCMC(pumpSpec)CpumpMCMC &lt;- compileNimble(pumpMCMC, project = pump)</p>
-<p>CpumpMCMC(1000)NULL samples &lt;- as.matrix(nfVar(CpumpMCMC, ‘mvSamples’))</p>
-<p>plot(samples[ , ‘alpha’], type = ‘l’, xlab = ‘iteration’, ylab = expression(alpha))plot(samples[ , ‘beta’], type = ‘l’, xlab = ‘iteration’, ylab = expression(beta))plot(samples[ , ‘alpha’], samples[ , ‘beta’], xlab = expression(alpha), ylab = expression(beta))assets/figures/posts/2014-12-03-nimble-explore/unnamed-chunk-15-1.pngassets/figures/posts/2014-12-03-nimble-explore/unnamed-chunk-15-2.pngassets/figures/posts/2014-12-03-nimble-explore/unnamed-chunk-15-3.png</p>
+<pre class="sourceCode r"><code class="sourceCode r">Cpump &lt;-<span class="st"> </span><span class="kw">compileNimble</span>(pump)
+pumpSpec &lt;-<span class="st"> </span><span class="kw">MCMCspec</span>(pump)
+pumpSpec$<span class="kw">addMonitors</span>(<span class="kw">c</span>(<span class="st">&#39;alpha&#39;</span>, <span class="st">&#39;beta&#39;</span>, <span class="st">&#39;theta&#39;</span>))</code></pre>
+<pre><code>thin = 1: alpha, beta, theta</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pumpMCMC &lt;-<span class="st"> </span><span class="kw">buildMCMC</span>(pumpSpec)
+CpumpMCMC &lt;-<span class="st"> </span><span class="kw">compileNimble</span>(pumpMCMC, <span class="dt">project =</span> pump)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CpumpMCMC</span>(<span class="dv">1000</span>)</code></pre>
+<pre><code>NULL</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">samples &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">nfVar</span>(CpumpMCMC, <span class="st">&#39;mvSamples&#39;</span>))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(samples[ , <span class="st">&#39;alpha&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>,
+<span class="dt">ylab =</span> <span class="kw">expression</span>(alpha))
+<span class="kw">plot</span>(samples[ , <span class="st">&#39;beta&#39;</span>], <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;iteration&#39;</span>,
+<span class="dt">ylab =</span> <span class="kw">expression</span>(beta))
+<span class="kw">plot</span>(samples[ , <span class="st">&#39;alpha&#39;</span>], samples[ , <span class="st">&#39;beta&#39;</span>], <span class="dt">xlab =</span> <span class="kw">expression</span>(alpha),
+<span class="dt">ylab =</span> <span class="kw">expression</span>(beta))</code></pre>
+<p><img src="/assets/figures/posts/2014-12-03-nimble-explore/unnamed-chunk-15-1.png" alt="plot of chunk unnamed-chunk-15" /> <img src="/assets/figures/posts/2014-12-03-nimble-explore/unnamed-chunk-15-2.png" alt="plot of chunk unnamed-chunk-15" /> <img src="/assets/figures/posts/2014-12-03-nimble-explore/unnamed-chunk-15-3.png" alt="plot of chunk unnamed-chunk-15" /></p>
 <p>Note the poor mixing (which is improved by the block sampler, as shown in the manual).</p>
-<hr />
 <section class="footnotes">
 <hr />
 <ol>
