@@ -1,16 +1,16 @@
 title: Lab Notebook 
-tagline: Theoretical ecology and evolution
+tagline: Statistics, genomics, and personalized medicine
 author:
-  name: Carl Boettiger
-  givenName: Carl
-  familyName: Boettiger
-  twitter: cboettig
-  github: cboettig
+  name: Frederick Boehm
+  givenName: Frederick
+  familyName: Boehm
+  twitter: fredboehm128
+  github: fboehm
   mendeley: carl-boettiger
-  email: cboettig@gmail.com
-url: http://www.carlboettiger.info
+  email: frederick.boehm@gmail.com
+url: http://fboehm.github.io
 
-username: cboettig
+username: fboehm
 repo: labnotebook
 
 gems:
@@ -34,7 +34,7 @@ permalink: /:year/:month/:day/:title.html
 redirects: yes     ## A flag to turn on the redirects plugin
 pageviews: no    ## toggle on sidebar pageviews 
 twitter_api: yes
-analytics: UA-18401403-1 ## Google Analytics key (in _includes/analytics.html)
+analytics: UA-46757486-3 ## Google Analytics key (in _includes/analytics.html)
 
 
 exclude:
